@@ -12,5 +12,6 @@ gamma_bin = "".join(map(str, gamma))
 gamma_dec = int(gamma_bin, 2)
 epsilon_bin = format(int(ones, 2) ^ int(gamma_bin, 2), f"0{bit_depth}b")
 epsilon_dec = int(epsilon_bin, 2)
+power = gamma_dec * epsilon_dec
 print(gamma_bin, epsilon_bin)
-print(gamma_dec, epsilon_dec, gamma_dec * epsilon_dec)
+print(gamma_dec, epsilon_dec, power)
