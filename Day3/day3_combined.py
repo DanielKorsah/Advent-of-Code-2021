@@ -36,10 +36,22 @@ def elimination(gamma, epsilon, index=0):
     return elimination(gamma, epsilon, index + 1)
 
 
+def most_least(bitset):
+    gamma_dec = mcb_decimal(bitset)
+    ones = "0b" + bit_depth * "1"
+    epsilon_bin = format(int(ones, 2) ^ gamma_dec, f"0{bit_depth}b")
+    epsilon_dec = int(epsilon_bin, 2)
+    return gamma_dec, epsilon_dec
+
+
 if __name__ == '__main__':
     lines = list(map(str.strip, open("input.txt", "r").readlines()))
     bit_depth = len(lines[0])
+
+    g, e = most_least(lines)
+    power = g * e
     oxygen, co2 = elimination(lines, lines)
+    print("power", bin(g), g, bin(e), e, power)
     print("oxygen", oxygen, int(oxygen, 2))
     print("co2", co2, int(co2, 2))
     print("ans: ", int(co2, 2) * int(oxygen, 2))
